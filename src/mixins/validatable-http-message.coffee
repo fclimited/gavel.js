@@ -170,14 +170,11 @@ class Validatable
           objectList = []
           i = 1
           while (i < csvObject.length) 
-            console.log('csv headers', headers)
             csvRow = csvObject[i]
             convertedObject = {}
             for key, value of csvRow
-              console.log('key for value', key, value)
               convertedObject[headers[key]] = value;
 
-            console.log('converted object', convertedObject)
             objectList.push(convertedObject);
             i++
 
