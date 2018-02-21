@@ -1,6 +1,6 @@
 {
-  "name": "gavel",
-  "version": "0.0.0-semantically-released",
+  "name": "@fcl/gavel",
+  "version": "1.1.4",
   "description": "Validator of HTTP transactions (JavaScript implementation)",
   "main": "lib/gavel.js",
   "engines": {
@@ -27,6 +27,7 @@
     "caseless": "^0.12.0",
     "clone": "^2.1.1",
     "commander": "^2.9.0",
+    "csv-string": "^3.1.2",
     "curl-trace-parser": "0.0.8",
     "deep-equal": "^1.0.1",
     "googlediff": "^0.1.0",
@@ -35,7 +36,8 @@
     "json-pointer": "^0.6.0",
     "jsonlint": "git+https://git@github.com/josdejong/jsonlint.git",
     "media-typer": "^0.3.0",
-    "tv4": "^1.3.0"
+    "tv4": "^1.3.0",
+    "xml2json": "^0.11.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

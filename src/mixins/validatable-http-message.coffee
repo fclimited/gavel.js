@@ -1,6 +1,8 @@
 jsonlint = require 'jsonlint'
 mediaTyper = require 'media-typer'
 validators = require '../validators'
+parser = require 'xml2json'
+CSV = require 'csv-string'
 
 # validatable mixin.
 #
@@ -153,6 +155,34 @@ class Validatable
         JSON.parse @body
         @validation.body.realType = 'application/json'
       catch error
+
+        if contentType == 'application/xml'
+          jsonObject = JSON.parse(parser.toJson(@body));
+          for i in jsonObject
+            jsonList = jsonObject[i];
+            @body = JSON.stringify(jsonList);
+            @validation.body.realType = 'application/json';
+          
+        if contentType == 'text/csv'
+          csvObject = CSV.parse(@body)
+          headers = csvObject[0]
+          objectList = []
+          i = 1
+          while (i < csvObject.length) 
+            console.log('csv headers', headers)
+            csvRow = csvObject[i]
+            convertedObject = {}
+            for key, value of csvRow
+              console.log('key for value', key, value)
+              convertedObject[headers[key]] = value;
+
+            console.log('converted object', convertedObject)
+            objectList.push(convertedObject);
+            i++
+
+          @body =  JSON.stringify({objects: objectList})
+          @validation.body.realType = 'application/json';
+  
         @validation.body.realType = 'text/plain'
 
 
