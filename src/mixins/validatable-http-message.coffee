@@ -161,7 +161,8 @@ class Validatable
           for i in jsonObject
             jsonList = jsonObject[i];
             @body = JSON.stringify(jsonList);
-            @validation.body.realType = 'application/json';
+            @validation.body.realType = 'application/json'
+            return
           
         if contentType == 'text/csv'
           csvObject = CSV.parse(@body)
@@ -181,7 +182,9 @@ class Validatable
             i++
 
           @body =  JSON.stringify({objects: objectList})
-          @validation.body.realType = 'application/json';
+          @validation.body.realType = 'application/json'
+          return
+
   
         @validation.body.realType = 'text/plain'
 
