@@ -158,8 +158,8 @@ class Validatable
 
         if contentType == 'application/xml'
           jsonObject = JSON.parse(parser.toJson(@body));
-          for i in jsonObject
-            jsonList = jsonObject[i];
+          for key,value of jsonObject
+            jsonList = value;
             @body = JSON.stringify(jsonList);
             @validation.body.realType = 'application/json'
             return
